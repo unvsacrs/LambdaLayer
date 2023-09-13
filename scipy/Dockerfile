@@ -1,8 +1,5 @@
 FROM  --platform=linux/amd64 amazonlinux:2
 
-ARG AWS_ACCESS_KEY_ID
-ARG AWS_SECRET_ACCESS_KEY
-
 # install amazon-linux-extras install
 RUN amazon-linux-extras install -y
 
@@ -36,4 +33,8 @@ RUN  pip3.8 install -r requirements.txt --target python
 
 RUN  zip -r scipy.zip python
 
-RUN  aws s3 cp scipy.zip s3://toa-lambda-layers/
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ARG AWS_S3_NAME
+
+RUN  aws s3 cp scipy.zip s3://${AWS_S3_NAME}/
