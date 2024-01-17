@@ -1,0 +1,9 @@
+
+#ビルド
+docker build -t lambda-layer-3.11:latest .
+
+#コンテナのリネーム
+docker tag lambda-layer-3.11:latest unvsacrs/lambda-layer-3.11
+
+#コンテナのプッシュ
+docker push unvsacrs/lambda-layer-3.11
